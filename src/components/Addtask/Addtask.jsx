@@ -3,16 +3,16 @@ import { useState } from "react";
 import Task from "../Tasks/Task";
 
 const Addtask = () => {
-  const [task, setTask] = useState(" ");
-  const [date, setDate] = useState(" ");
+  const [task, setTask] = useState("");
+  const [date, setDate] = useState("");
   const [data, setData] = useState([]);
 
   const handleSubmit = (e) => {
-    setTask(e.target.task.value);
-    setDate(e.target.date.value);
-    data.push({ task: task, date: date });
-    console.log(data);
     e.preventDefault();
+    const id = new Date().getTime();
+    const newTask = { id: id, task: task, date: date, isDone: false };
+    setData([...data, newTask]);
+    console.log(data);
   };
 
   return (
@@ -34,7 +34,7 @@ const Addtask = () => {
         <div className="form-group mt-4">
           <label htmlFor="exampleInputPassword1">Day & Time</label>
           <input
-            type="text"
+            type="date"
             className="form-control"
             id="date"
             placeholder="Day & Time"
@@ -49,8 +49,8 @@ const Addtask = () => {
         >
           Submit
         </button>
-        {data.map((task) => {
-          <Task {...data} />;
+        {data.map((task, index) => {
+          return <Task taskList={task} key={index} data={data} />;
         })}
       </form>
     </div>

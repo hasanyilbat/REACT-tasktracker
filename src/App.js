@@ -1,10 +1,9 @@
 import "./App.css";
-import Addtask from "./components/Addtask/Addtask";
 import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <div className="border border-2 border-danger w-75 m-auto">
+    <div className="container w-75 m-auto p-3">
       <Header />
     </div>
   );

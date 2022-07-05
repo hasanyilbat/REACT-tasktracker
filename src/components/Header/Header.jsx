@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <div>
-      <h1 className="text-center">Task Tracker</h1>
+      <h1 className="text-center text-light ">Task Tracker</h1>
       <button
         className="btn btn-danger d-block m-auto mt-4"
         onClick={handleClicked}

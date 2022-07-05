@@ -1,0 +1,11 @@
+.container {
+  background-color: rgb(88, 131, 164);
+}
+
+.icon {
+  color: red;
+  font-size: 2rem;
+  position: absolute;
+  right: 40px;
+  top: 25px;
+}
