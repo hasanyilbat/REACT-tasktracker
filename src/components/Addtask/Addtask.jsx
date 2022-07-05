@@ -1,18 +1,38 @@
 import React from "react";
 import { useState } from "react";
-import Task from "../Tasks/Task";
+import { FaRegCalendarTimes } from "react-icons/fa";
 
 const Addtask = () => {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
   const [data, setData] = useState([]);
+  const [isDone, setIsDone] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = new Date().getTime();
-    const newTask = { id: id, task: task, date: date, isDone: false };
+    const newTask = { id: id, task: task, date: date };
     setData([...data, newTask]);
-    console.log(data);
+    // console.log(data);
+  };
+
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id));
+    console.log(id);
+  };
+
+  const handleDone = (e) => {
+    if (isDone) {
+      console.log("hey");
+      console.log(e.target);
+      e.target.classList.add("done");
+      setIsDone(!isDone);
+    } else {
+      console.log("hea");
+      console.log(e.target);
+      e.target.classList.remove("done");
+      setIsDone(!isDone);
+    }
   };
 
   return (
@@ -49,8 +69,29 @@ const Addtask = () => {
         >
           Submit
         </button>
-        {data.map((task, index) => {
-          return <Task taskList={task} key={index} data={data} />;
+        {data.map((tasks, index) => {
+          const { id, date, task } = tasks;
+          return (
+            <div key={index}>
+              {!task || !date ? null : (
+                <div className="mt-4" onClick={handleDone}>
+                  <div
+                    className="alert alert-primary d-flex justify-content-center"
+                    role="alert"
+                  >
+                    <div>
+                      <h3>{task}</h3>
+                      <p>{date}</p>
+                    </div>
+
+                    <div className="icon" onClick={() => handleDelete(id)}>
+                      <FaRegCalendarTimes />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
         })}
       </form>
     </div>

@@ -9,3 +9,9 @@
   right: 40px;
   top: 25px;
 }
+
+.done {
+  text-decoration: line-through;
+  background-color: rgb(10, 181, 50) !important;
+  color: white !important;
+}
